@@ -6,11 +6,11 @@ import { UserLogin } from '../model/UserLogin';
 import { AuthService } from '../service/auth.service';
 
 @Component({
-  selector: 'app-entrar',
-  templateUrl: './entrar.component.html',
-  styleUrls: ['./entrar.component.css']
+  selector: 'app-logar',
+  templateUrl: './logar.component.html',
+  styleUrls: ['./logar.component.css']
 })
-export class EntrarComponent implements OnInit {
+export class LogarComponent implements OnInit {
 
   userLogin: UserLogin = new UserLogin()
   constructor(
@@ -23,8 +23,8 @@ export class EntrarComponent implements OnInit {
 
   }
 
-  entrar(){
-    this.auth.entrar(this.userLogin).subscribe((resp: UserLogin) =>{
+  logar(){
+    this.auth.logar(this.userLogin).subscribe((resp: UserLogin) =>{
       this.userLogin = resp
       environment.token = this.userLogin.token
       environment.nome = this.userLogin.nome
@@ -43,6 +43,8 @@ export class EntrarComponent implements OnInit {
       this.router.navigate(['/inicio'])
     }, erro =>{
       if(erro.status == 500){
+        console.log(this.userLogin.usuario)
+        console.log(this.userLogin.senha)
         alert('Usuário ou senha estão incorretos')
       }
     })
