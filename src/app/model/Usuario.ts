@@ -1,5 +1,5 @@
 import { Postagem } from "./Postagem"
-
+0
 export class Usuario{
   public id: number
   public nome: string
