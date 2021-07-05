@@ -15,12 +15,12 @@ export class AuthService {
   ) { }
 
   logar(userLogin: UserLogin): Observable<UserLogin>{
-    return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin) //https://blogpessoaldafabi.herokuapp.com/logar//
+    return this.http.post<UserLogin>('https://blogpessoalbackfabi.herokuapp.com/usuarios/logar', userLogin) //   http://localhost:8080/usuarios/logar//
 
   }
 
   cadastrar(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>('http://localhost:8080/usuarios/cadastrar', usuario) //https://blogpessoaldafabi.herokuapp.com/cadastrar//
+    return this.http.post<Usuario>('https://blogpessoalbackfabi.herokuapp.com/usuarios/cadastrar', usuario) //http://localhost:8080/usuarios/ //
 
   }
 logado(){
