@@ -51,3 +51,4 @@ export class LogarComponent implements OnInit {
 
   }
 }
+

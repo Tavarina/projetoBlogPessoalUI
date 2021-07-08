@@ -23,6 +23,10 @@ export class AuthService {
     return this.http.post<Usuario>('https://blogpessoalbackfabi.herokuapp.com/usuarios/cadastrar', usuario) //http://localhost:8080/usuarios/ //
 
   }
+
+  getByUsuario(id: number): Observable<Usuario>{
+    return this.http.get<Usuario>(`https://blogpessoalbackfabi.herokuapp.com/usuarios/${id}`)
+  }
 logado(){
   let ok: boolean = false
 
