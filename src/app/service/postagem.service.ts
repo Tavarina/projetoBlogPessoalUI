@@ -18,7 +18,19 @@ getAllPostagens(): Observable<Postagem[]>{
   return this.http.get<Postagem[]>('https://blogpessoalbackfabi.herokuapp.com/postagem',this.token)
 }
 
+getByIdPostagem(id: number): Observable<Postagem>{
+  return this.http.get<Postagem>(`https://blogpessoalbackfabi.herokuapp.com/postagem/${id}`, this.token)
+}
+
 postPostagem(postagem:Postagem) : Observable<Postagem>{
   return this.http.post<Postagem>('https://blogpessoalbackfabi.herokuapp.com/postagem', postagem , this.token)
 }
+
+putPostagem(postagem: Postagem): Observable<Postagem>{
+  return this.http.put<Postagem>('https://blogpessoalbackfabi.herokuapp.com/postagem', postagem, this.token)
+}
+deletePostagem(id:number){
+  return this.http.delete(`https://blogpessoalbackfabi.herokuapp.com/postagem/${id}`, this.token)
+}
+
 }
