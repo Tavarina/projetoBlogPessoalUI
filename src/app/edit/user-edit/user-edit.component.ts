@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/Usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-user-edit',
@@ -16,7 +15,8 @@ export class UserEditComponent implements OnInit {
   usuario: Usuario = new Usuario()
 idUser: number
 confirmarSenha: string
-tipoUsuario: String
+tipoUsuario: string
+
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -42,7 +42,7 @@ this.confirmSenha = event.target.value
   }
 
   atualizar(){
-      this.usuario.tipo = this.tipoUser
+    this.usuario.tipo = this.tipoUsuario
 
       if(this.usuario.senha != this.confirmarSenha){
 
@@ -59,7 +59,7 @@ this.confirmSenha = event.target.value
     }
 
   findByUser(id: number){
-    this.authService.getByUsuario(this.id).subscribe((resp: Usuario)=>{
+    this.authService.getByUsuario(id).subscribe((resp: Usuario)=>{
       this.usuario = resp
     })
   }

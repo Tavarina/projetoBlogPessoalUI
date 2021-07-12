@@ -16,7 +16,7 @@ export class PostagemDeleteComponent implements OnInit {
   /*Variaveis */
   postagem: Postagem = new Postagem()
   idPost: number
-
+ listaPostagens: Postagem []
   constructor(
     private router: Router,
     private route: ActivatedRoute,

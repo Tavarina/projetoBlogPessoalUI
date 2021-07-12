@@ -27,7 +27,8 @@ export class InicioComponent implements OnInit {
   usuario: Usuario = new Usuario()
 
   idUser = environment.id
-
+key = 'data'
+reverse = true
 
   constructor(
     private router: Router,
@@ -69,20 +70,17 @@ export class InicioComponent implements OnInit {
       this.usuario = resp
     })
   }
-
-  publicar() {
-    this.tema.id = this.idTema
-    this.postagem.tema = this.tema
-
-    this.usuario.id = this.idUser
-    this.postagem.usuario = this.usuario
-    this.postagemService.postPostagem(this.postagem).subscribe((resp:Postagem)=>{
-      this.postagem = resp
-      this.alertas.showAlertSuccess("Postagem realizada com sucesso")
-      this.postagem = new Postagem()
-      this.getAllPostagens()
-    })
-
-  }
+publicar(){
+  this.tema.id = this.idTema
+  this.postagem.tema = this.tema
+  this.usuario.id = this.idUser
+  this.postagem.usuario = this.usuario
+  this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) =>{
+    this.postagem = resp
+    alert('Foi')
+    this.postagem = new Postagem()
+    this.getAllPostagens()
+  })
+}
 
 }
