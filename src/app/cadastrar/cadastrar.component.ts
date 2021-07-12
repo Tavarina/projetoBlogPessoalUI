@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 
@@ -35,7 +36,7 @@ export class CadastrarComponent implements OnInit {
     this.usuario.tipo = this.tipoUsuario
 
     if(this.usuario.senha != this.confirmarSenha){
-      
+
       alert('A senhas estão incorretas.')
 
     }else{
@@ -43,6 +44,11 @@ export class CadastrarComponent implements OnInit {
         this.usuario = resp
         this.router.navigate(['/logar'])
         alert('Usuário cadastrado com sucesso!')
+        environment.token =''
+        environment.nome = ''
+        environment.foto = ''
+        environment.id = 0
+        this.router.navigate(['/login'])
       })
 
     }
