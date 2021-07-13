@@ -18,17 +18,20 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagens: Postagem[]
+  tituloPost: string
 
   tema: Tema = new Tema()
 
   listaTemas: Tema[]
   idTema: number
+  nomeTema: string
 
   usuario: Usuario = new Usuario()
 
   idUser = environment.id
-key = 'data'
-reverse = true
+  key = 'data'
+  reverse = true
+
 
   constructor(
     private router: Router,
@@ -39,7 +42,7 @@ reverse = true
   ) { }
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
 
     if (environment.token == '') {
       this.router.navigate(['/logar'])
@@ -70,17 +73,38 @@ reverse = true
       this.usuario = resp
     })
   }
-publicar(){
-  this.tema.id = this.idTema
-  this.postagem.tema = this.tema
-  this.usuario.id = this.idUser
-  this.postagem.usuario = this.usuario
-  this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) =>{
-    this.postagem = resp
-    alert('Foi')
-    this.postagem = new Postagem()
-    this.getAllPostagens()
-  })
-}
+  publicar() {
+    this.tema.id = this.idTema
+    this.postagem.tema = this.tema
+    this.usuario.id = this.idUser
+    this.postagem.usuario = this.usuario
+    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
+      this.postagem = resp
+      this.alertas.showAlertInfo('Postagem realizada com sucesso!!!')
+      this.postagem = new Postagem()
+      this.getAllPostagens()
+    })
+  }
+  findByTituloPostagem() {
+    if (this.tituloPost == '') {
+      this.getAllPostagens()
+    } else {
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[]) => {
+        this.listaPostagens = resp
+      })
+
+    }
+
+  }
+
+  findByNomeTema() {
+    if(this.nomeTema == ''){
+      this.getAllTemas()
+    }else{
+      this.temaService.getByNomeTema(this.nomeTema).subscribe((resp: Tema[]) => {
+        this.listaTemas = resp
+      })
+    }
+  }
 
 }

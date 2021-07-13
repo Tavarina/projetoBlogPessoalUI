@@ -22,6 +22,10 @@ getByIdPostagem(id:number):Observable<Postagem>{
   return this.http.get<Postagem>(`https://blogpessoalbackfabi.herokuapp.com/postagens/${id}`, this.token)
 }
 
+getByTituloPostagem(titulo: string): Observable<Postagem[]>{
+  return this.http.get<Postagem[]>(`https://blogpessoalbackfabi.herokuapp.com/postagens/titulo/${titulo}`, this.token)
+
+}
 postPostagem(postagem: Postagem):Observable<Postagem>{
   return this.http.post<Postagem>('https://blogpessoalbackfabi.herokuapp.com/postagens', postagem , this.token)
 }
