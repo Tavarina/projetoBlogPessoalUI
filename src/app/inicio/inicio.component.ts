@@ -37,7 +37,7 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService,
+    public authService: AuthService,
     private alertas: AlertasService
   ) { }
 
@@ -98,9 +98,9 @@ export class InicioComponent implements OnInit {
   }
 
   findByNomeTema() {
-    if(this.nomeTema == ''){
+    if (this.nomeTema == '') {
       this.getAllTemas()
-    }else{
+    } else {
       this.temaService.getByNomeTema(this.nomeTema).subscribe((resp: Tema[]) => {
         this.listaTemas = resp
       })

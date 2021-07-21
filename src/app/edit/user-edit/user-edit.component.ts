@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/Usuario';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -20,7 +21,8 @@ tipoUsuario: string
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit(){
@@ -46,13 +48,13 @@ this.confirmSenha = event.target.value
 
       if(this.usuario.senha != this.confirmarSenha){
 
-        alert('A senhas estão incorretas.')
+        this.alertas.showAlertInfo('A senhas estão incorretas.')
 
       }else{
         this.authService.cadastrar(this.usuario).subscribe((resp:Usuario) =>{
           this.usuario = resp
           this.router.navigate(['/logar'])
-          alert('Usuário atualizado  com sucesso!')
+          this.alertas.showAlertInfo('Usuário atualizado  com sucesso!')
         })
 
       }
